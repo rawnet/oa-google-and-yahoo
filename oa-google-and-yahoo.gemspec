@@ -11,6 +11,13 @@ Gem::Specification.new do |s|
   s.authors = ["mpd"]
   s.date = %q{2010-11-04}
   s.description = %q{OmniAuth extension for Google and Yahoo authentication}
+  s.files = [
+    "Rakefile",
+     "VERSION",
+     "lib/omniauth/strategies/google.rb",
+     "lib/omniauth/strategies/yahoo.rb",
+     "oa-google-and-yahoo.gemspec"
+  ]
   s.homepage = %q{http://github.com/xxx/omniauth}
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
