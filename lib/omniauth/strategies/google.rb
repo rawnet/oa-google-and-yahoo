@@ -47,12 +47,12 @@ module OmniAuth
         # Google is very strict about keeping authorization and authentication apart. They provide user info for OpenID logins, but not OAuth. 
         # They give no endpoint to get a user's profile directly that I can find. We *can* get their name and email out of the contacts feed, however.
         # It will fail, however, in the extremely rare case of a user who has a Google Account but has never even signed up for Gmail.
-        @user_hash ||= MultiJson.decode(@access_token.get("http://www.google.com/m8/feeds/contacts/default/full?max-results=1&alt=json").body)
+        @user_hash ||= MultiJson.decode(@access_token.get("https://www.google.com/m8/feeds/contacts/default/full?max-results=1&alt=json").body)
       end
 
       # Monkeypatch OmniAuth to pass the scope in the consumer.get_request_token call
       def request_phase
-        request_token = consumer.get_request_token({:oauth_callback => callback_url}, {:scope => "http://www.google.com/m8/feeds"})
+        request_token = consumer.get_request_token({:oauth_callback => callback_url}, {:scope => "https://www.google.com/m8/feeds"})
         (session[:oauth]||={})[name.to_sym] = {:callback_confirmed => request_token.callback_confirmed?, :request_token => request_token.token, :request_secret => request_token.secret}
         r = Rack::Response.new
         r.redirect request_token.authorize_url
