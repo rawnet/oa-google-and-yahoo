@@ -44,7 +44,7 @@ module OmniAuth
       
       def user_hash
         uid = @access_token.params['xoauth_yahoo_guid']
-        @user_hash ||= MultiJson.decode(@access_token.get("https://social.yahooapis.com/v1/user/#{uid}/profile?format=json").body)
+        @user_hash ||= MultiJson.decode(@access_token.get("http://social.yahooapis.com/v1/user/#{uid}/profile?format=json").body)
       end
     end
   end
